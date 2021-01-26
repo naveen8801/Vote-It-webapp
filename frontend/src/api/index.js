@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const url = 'http://localhost:5000';
+export const url = 'https://voteme-webapp.herokuapp.com';
 
 export const NewPoll = (newPoll) => axios.post(`${url}/poll`, newPoll);
 export const GetPoll = (id) => axios.get(`${url}/getpoll/${id}`);

@@ -1,0 +1,22 @@
+.main_container{
+    text-align: center;
+
+}
+.container{
+    margin-top: 100px;
+    width: 60%;
+    height: 150px;
+    display: inline-block;
+    background-color: #cae4db;
+}
+
+
+.main_heading{
+    font-size: 50px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.p_{
+    font-size: 19px;
+}
+
