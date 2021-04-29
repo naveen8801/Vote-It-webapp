@@ -18,8 +18,8 @@ app.use(routers);
 const PORT =  process.env.PORT||5000;
 const HOST = '0.0.0.0';
 
-// const CONNECTION_URL =
-//   'mongodb+srv://naveen_8801:<password>@cluster0.np5ob.mongodb.net/<dbname>?retryWrites=true&w=majority';
+
+
 
 mongoose
   .connect(process.env.CONNECTION_URL, {

@@ -5,8 +5,19 @@ import { validateAll } from 'indicative/validator.js';
 import pollsDoc from '../models/polls.js';
 import ipDoc from '../models/ip_velidator.js';
 import mongodb from 'mongodb';
+import Pusher from 'pusher';
+import dotenv from 'dotenv';
 
-const ObjectID = mongodb.ObjectID;
+dotenv.config();
+
+const pusher = new Pusher({
+  appId: process.env.PUSHER_APIID,
+  key: process.env.PUSHER_KEY,
+  secret: process.env.PUHSER_SECRETKEY,
+  cluster: process.env.PUSHER_CLUSTER,
+  useTLS: process.env.PUSHER_USETLS,
+});
+console.log(process.env.PUSHER_APIID);
 
 export const createPoll = async (req, res) => {
   const poll = {
@@ -16,7 +27,6 @@ export const createPoll = async (req, res) => {
       count: 0,
     })),
   };
-
   try {
     await validateAll(req.body, {
       title: 'required',
@@ -27,20 +37,14 @@ export const createPoll = async (req, res) => {
     try {
       const NewPoll = new pollsDoc(poll);
       await NewPoll.save();
-
-      const newip = new ipDoc({
-        poll_id: NewPoll._id,
-        ip_adress: req.body.ip,
-      });
-      await newip.save();
       res.status(201).json(NewPoll);
     } catch (error) {
       console.log('DATABASE ERROR ---  ', error);
       res.status(404).json({ message: error.message });
     }
   } catch (error) {
-    return res.status(422).json(error);
     console.log('VALIDATION ERROR ----  ', error);
+    return res.status(422).json(error);
   }
 };
 
@@ -55,66 +59,24 @@ export const voteHere = async (req, res) => {
     res.status(404).json('No such poll or choice');
   } else {
     try {
-      try {
-        const ipValidate = await ipDoc.findOne({
-          ip_adress: { $all: [req.connection.remoteAddress] },
-        });
-        if (ipValidate) {
-          return res.send('ALREADY VOTED !!');
+
+      pollsDoc.findByIdAndUpdate(pollid,updatedPoll, function (err, docs) {
+        if (err) {
+          console.log(err);
         } else {
-          const ip_adress_previous = await ipDoc.findOne({
-            poll_id: pollid,
-          });
-          const updated_ip_list = [
-            ...ip_adress_previous.ip_adress,
-            req.connection.remoteAddress,
-          ];
-          const ip_adress_new = {
-            _id: ip_adress_previous._id,
-            poll_id: ip_adress_previous.poll_id,
-            ip_adress: updated_ip_list,
-          };
-          const updatedIp = await ipDoc.findByIdAndUpdate(
-            ip_adress_previous._id,
-            { ...ip_adress_new },
-            { new: true }
-          );
+          console.log('Updated User : ', docs);
         }
-      } catch (error) {
-        console.log('IP ADRESS DOC ERROR -- ', error);
-      }
-      const updatePost = await pollsDoc.findByIdAndUpdate(pollid, {
-        ...updatedPoll,
       });
-      res.status(200).json(updatePost);
+      pusher.trigger('polling', 'poll_created', updatedPoll);
+      res.status(200).json("OK");
     } catch (error) {
       console.log(error);
     }
   }
 };
-//   try {
-//     const checkoptionId = await pollsDoc.findOne({
-//       'choices._id': optionid,
-//     });
-//     if (!mongoose.Types.ObjectId.isValid(pollid) || !checkoptionId)
-//       return res.status(404).send('No post with that id');
-//     else{
-
-//     }    x
-//     const updatePost = await pollsDoc.findByIdAndUpdate(pollid, {
-//       ...updatedPoll,
-//       _id: pollid,
-//     });
-//     return res.send(updatePost);
-//   } catch (error) {
-//     console.log(error);
-//     res.send(404);
-//   }
-// };
 
 export const getPoll = async (req, res) => {
   const { id } = req.params;
-  console.log(id);
   try {
     const poll = await pollsDoc.findById(id);
     res.json(poll);

@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Create_Poll from './pages/Create_Poll';
 import Getpoll from './pages/Getpoll';
 
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
@@ -14,28 +15,32 @@ ReactDOM.render(
           <div className="container mx-auto px-5">
             <Link
               to="/"
-              className="text-white cursor-pointer hover:text-gray-400 transition duration-150 mr-3"
+              className="text-white cursor-pointer hover:text-gray-400 transition duration-150 mr-10"
             >
               Home
             </Link>
             <Link
-              to="/polls/create"
-              className="text-white cursor-pointer hover:text-gray-400 transition duration-150 mr-3"
+              to="/create"
+              className="text-white cursor-pointer hover:text-gray-400 transition duration-150 mr-10"
             >
               Create Poll
             </Link>
+        
           </div>
         </div>
 
         <Switch>
-          <Route path="/polls/create">
+          <Route path="/create">
             <Create_Poll />
           </Route>
-          <Route path="/polls/:poll" render={(props)=><Getpoll props={props}/>} />
+          <Route
+            path="/polls/:poll"
+            render={(props) => <Getpoll props={props} />}
+          />
           <Route path="/">
             <Home />
           </Route>
-        </Switch> 
+        </Switch>
       </div>
     </BrowserRouter>
   </React.StrictMode>,
