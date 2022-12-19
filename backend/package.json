@@ -19,7 +19,8 @@
     "indicative": "^7.4.4",
     "mongodb": "^3.6.3",
     "mongoose": "^5.11.13",
-    "nodemon": "^2.0.7",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.20",
     "pusher": "^5.0.0",
     "redis": "^3.0.2",
     "uuid": "^8.3.2"

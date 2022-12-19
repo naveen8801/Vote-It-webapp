@@ -1,23 +1,23 @@
 import mongoose from 'mongoose';
-import { v4 } from 'uuid';
-
 import { validateAll } from 'indicative/validator.js';
 import pollsDoc from '../models/polls.js';
-import ipDoc from '../models/ip_velidator.js';
-import mongodb from 'mongodb';
 import Pusher from 'pusher';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
 const pusher = new Pusher({
+  appId: process.env.PUSHER_APPID,
+  key: process.env.PUSHER_KEY,
+  secret: process.env.PUSHER_SECRETKEY,
+  cluster: process.env.PUSHER_CLUSTER,
+});
+console.log({
   appId: process.env.PUSHER_APIID,
   key: process.env.PUSHER_KEY,
   secret: process.env.PUHSER_SECRETKEY,
   cluster: process.env.PUSHER_CLUSTER,
-  useTLS: process.env.PUSHER_USETLS,
 });
-console.log(process.env.PUSHER_APIID);
 
 export const createPoll = async (req, res) => {
   const poll = {
@@ -59,16 +59,15 @@ export const voteHere = async (req, res) => {
     res.status(404).json('No such poll or choice');
   } else {
     try {
-
-      pollsDoc.findByIdAndUpdate(pollid,updatedPoll, function (err, docs) {
+      pollsDoc.findByIdAndUpdate(pollid, updatedPoll, function (err, docs) {
         if (err) {
           console.log(err);
         } else {
-          console.log('Updated User : ', docs);
+          console.log('Updated Poll : ', docs);
         }
       });
       pusher.trigger('polling', 'poll_created', updatedPoll);
-      res.status(200).json("OK");
+      res.status(200).json('OK');
     } catch (error) {
       console.log(error);
     }

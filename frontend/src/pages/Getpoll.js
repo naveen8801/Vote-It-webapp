@@ -32,8 +32,8 @@ function Getpoll(props) {
   const pusherData = () => {
     Pusher.logToConsole = true;
 
-    var pusher = new Pusher('1fe7a99eeddf4f3b49d5', {
-      cluster: 'ap2',
+    var pusher = new Pusher('cc27400a96c16f796300', {
+      cluster: 'us3',
     });
 
     var channel = pusher.subscribe('polling');
