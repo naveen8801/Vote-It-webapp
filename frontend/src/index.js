@@ -5,7 +5,7 @@ import { BrowserRouter, Link, Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Create_Poll from './pages/Create_Poll';
 import Getpoll from './pages/Getpoll';
-
+import AboutUs from './pages/AboutUs';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -20,12 +20,17 @@ ReactDOM.render(
               Home
             </Link>
             <Link
+              to="/about"
+              className="text-white cursor-pointer hover:text-gray-400 transition duration-150 mr-10"
+            >
+              About Us
+            </Link>
+            <Link
               to="/create"
               className="text-white cursor-pointer hover:text-gray-400 transition duration-150 mr-10"
             >
               Create Poll
             </Link>
-        
           </div>
         </div>
 
@@ -37,6 +42,9 @@ ReactDOM.render(
             path="/polls/:poll"
             render={(props) => <Getpoll props={props} />}
           />
+          <Route path="/about">
+            <AboutUs />
+          </Route>
           <Route path="/">
             <Home />
           </Route>
