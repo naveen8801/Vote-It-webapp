@@ -69,6 +69,36 @@ function Getpoll(props) {
     var channel = pusher.subscribe('polling');
     channel.bind('poll_created', function (data) {
       const temp = data;
+
+      const choices = temp.choices;
+      var labels = [];
+      const chart_name = temp.title;
+      var data = [];
+      var a = 0;
+      for (a = 0; a < choices.length; a++) {
+        labels[a] = choices[a].name;
+        data[a] = choices[a].count;
+      }
+      const temp_ = {
+        labels: labels,
+        datasets: [
+          {
+            label: chart_name,
+            data: data,
+            backgroundColor: [
+              '#845ec2',
+              '#ffc75f',
+              '#ff5e78',
+              '#6ffc03',
+              '#f70240',
+              '#e6acbb',
+              '#ecfc0a',
+            ],
+          },
+        ],
+      };
+      setChartData(temp_);
+
       setmaindata(temp);
       if (data) {
         let totalVotes = 0;
