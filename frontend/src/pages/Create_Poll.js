@@ -122,7 +122,7 @@ function Create_Poll() {
                   height: '20px',
                   display: 'flex',
                   flexDirection: 'row',
-                  justifyContent : 'center'
+                  justifyContent: 'center',
                 }}
               >
                 <EmailShareButton
@@ -149,12 +149,6 @@ function Create_Poll() {
                 >
                   <RedditIcon size={45} round />
                 </RedditShareButton>
-                <LinkedinShareButton
-                  style={{ marginLeft: '1rem', marginRight: '1rem' }}
-                  url={`${url}/polls/${success._id}`}
-                >
-                  <LinkedinIcon size={45} round />
-                </LinkedinShareButton>
               </div>
             </div>
           ) : null}
@@ -202,7 +196,7 @@ function Create_Poll() {
                 onClick={addAnswer}
                 class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
               >
-                Add answer
+                Add Option
               </button>
               <div className="mt-12 mb-6 text-center">
                 <button

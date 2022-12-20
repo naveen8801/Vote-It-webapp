@@ -12,12 +12,6 @@ const pusher = new Pusher({
   secret: process.env.PUSHER_SECRETKEY,
   cluster: process.env.PUSHER_CLUSTER,
 });
-console.log({
-  appId: process.env.PUSHER_APIID,
-  key: process.env.PUSHER_KEY,
-  secret: process.env.PUHSER_SECRETKEY,
-  cluster: process.env.PUSHER_CLUSTER,
-});
 
 export const createPoll = async (req, res) => {
   const poll = {
@@ -78,6 +72,15 @@ export const getPoll = async (req, res) => {
   const { id } = req.params;
   try {
     const poll = await pollsDoc.findById(id);
+    res.json(poll);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getPolls = async (req, res) => {
+  try {
+    const poll = await pollsDoc.find();
     res.json(poll);
   } catch (error) {
     console.log(error);

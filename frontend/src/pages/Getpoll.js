@@ -14,6 +14,7 @@ function Getpoll(props) {
   const [AlltotalVotes, setAllTotalvotes] = useState(0);
   const [maindata, setmaindata] = useState(null);
   const [loading, setloading] = useState(false);
+  const [chartData, setChartData] = useState({});
 
   const newFetch = () => {
     setloading(true);
@@ -22,6 +23,35 @@ function Getpoll(props) {
         const newdata = res.data;
         setpoll(newdata);
         setmaindata(newdata);
+
+        const choices = newdata.choices;
+        var labels = [];
+        const chart_name = newdata.title;
+        var data = [];
+        var a = 0;
+        for (a = 0; a < choices.length; a++) {
+          labels[a] = choices[a].name;
+          data[a] = choices[a].count;
+        }
+        const temp = {
+          labels: labels,
+          datasets: [
+            {
+              label: chart_name,
+              data: data,
+              backgroundColor: [
+                '#845ec2',
+                '#ffc75f',
+                '#ff5e78',
+                '#6ffc03',
+                '#f70240',
+                '#e6acbb',
+                '#ecfc0a',
+              ],
+            },
+          ],
+        };
+        setChartData(temp);
       })
       .catch((error) => {
         console.log(error);
@@ -39,18 +69,13 @@ function Getpoll(props) {
     var channel = pusher.subscribe('polling');
     channel.bind('poll_created', function (data) {
       const temp = data;
-      console.log('yes');
       setmaindata(temp);
-      console.log(temp);
       if (data) {
         let totalVotes = 0;
         temp.choices.forEach((choice) => {
           totalVotes += choice.count;
         });
         setAllTotalvotes(totalVotes);
-        console.log(AlltotalVotes);
-      } else {
-        setAllTotalvotes(0);
       }
     });
   };
@@ -76,12 +101,9 @@ function Getpoll(props) {
       choice_be_updated,
     };
 
-    setpoll(updated_poll);
-    console.log('no');
-    console.log(poll);
+    // setpoll(updated_poll);
     const poll_updated = await CastVote(pollID, choice, updated_poll);
     setVoted(true);
-
   };
 
   return (
@@ -144,7 +166,7 @@ function Getpoll(props) {
           marginTop: '4rem',
         }}
       >
-        {loading ? <CircularProgress /> : <Barchart id={pollID} />}
+        {loading ? <CircularProgress /> : <Barchart chartData={chartData} />}
       </div>
     </div>
   );

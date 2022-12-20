@@ -12,7 +12,7 @@ function AboutUs() {
           <p className={styles.p_}>
             We are young team of passionate and hardworking individauls. Always
             trying to make things easier and effective for rest of the world.
-            Feel free tu contribute to this project 🚀
+            Feel free to contribute to this project 🚀
           </p>
           <div style={{ marginTop: '2rem', fontSize: '18px' }}>
             <p
