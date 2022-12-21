@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Create_Poll from './pages/Create_Poll';
 import Getpoll from './pages/Getpoll';
 import AboutUs from './pages/AboutUs';
+import AllPolls from './pages/AllPolls';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -26,6 +27,12 @@ ReactDOM.render(
               About Us
             </Link>
             <Link
+              to="/all-polls"
+              className="text-white cursor-pointer hover:text-gray-400 transition duration-150 mr-10"
+            >
+              All Polls
+            </Link>
+            <Link
               to="/create"
               className="text-white cursor-pointer hover:text-gray-400 transition duration-150 mr-10"
             >
@@ -44,6 +51,9 @@ ReactDOM.render(
           />
           <Route path="/about">
             <AboutUs />
+          </Route>
+          <Route path="/all-polls">
+            <AllPolls />
           </Route>
           <Route path="/">
             <Home />

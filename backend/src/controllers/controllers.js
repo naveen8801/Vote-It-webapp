@@ -58,9 +58,10 @@ export const voteHere = async (req, res) => {
           console.log(err);
         } else {
           console.log('Updated Poll : ', docs);
+          pusher.trigger('polling', 'poll_created', updatedPoll);
         }
       });
-      pusher.trigger('polling', 'poll_created', updatedPoll);
+      // pusher.trigger('polling', 'poll_created', updatedPoll);
       res.status(200).json('OK');
     } catch (error) {
       console.log(error);
