@@ -3,6 +3,11 @@ import { v4 } from 'uuid';
 
 const pollsSchema = mongoose.Schema({
   title: String,
+  description: String,
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
   choices: [
     {
       _id: {

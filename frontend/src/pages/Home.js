@@ -50,6 +50,14 @@ function Home() {
               Create Poll
             </button>
           </Link>
+           <Link
+            to="/all-polls"
+            className="text-white cursor-pointer hover:text-gray-400 transition duration-150 mr-10"
+          >
+            <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+              View Polls
+            </button>
+          </Link>
         </div>
       </div>
       <div className={styles.rightDiv}>

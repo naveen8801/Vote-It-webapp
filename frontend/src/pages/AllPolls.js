@@ -3,6 +3,7 @@ import styles from './style.module.css';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { GetAllPolls } from '../api';
 import AllPollsCard from '../components/AllPollsCard/AllPollsCard';
+import moment from 'moment';
 
 function AllPolls() {
   const [loading, setLoading] = useState(false);
@@ -26,8 +27,20 @@ function AllPolls() {
     setLoading(false);
   };
 
+  const getVotesCount = (item) => {
+    let sum = 0;
+    item?.choices?.map((choice) => (sum += choice.count));
+    return sum;
+  };
+
   return (
-    <div className={styles.main_container} style={{ paddingBottom: '1rem' }}>
+    <div
+      style={{
+        paddingBottom: '2rem',
+        overflow: 'auto',
+        height: 'calc(100vh - 80px)',
+      }}
+    >
       {loading ? (
         <>
           <div
@@ -36,7 +49,7 @@ function AllPolls() {
               flexDirection: 'row',
               alignItems: 'center',
               justifyContent: 'center',
-              marginTop: '4rem',
+              width: '100%',
             }}
           >
             <CircularProgress
@@ -51,14 +64,21 @@ function AllPolls() {
               style={{
                 display: 'flex',
                 flexDirection: 'column',
-                alignItems: 'flex-start',
+                alignItems: 'center',
                 justifyContent: 'flex-start',
                 marginTop: '1rem',
                 width: '100%',
               }}
             >
               {allPolls.map((item, i) => (
-                <AllPollsCard />
+                <AllPollsCard
+                  key={i}
+                  title={item?.title}
+                  timestamp={moment(item?.createdAt).fromNow()}
+                  votes={`Votes : ${getVotesCount(item)}`}
+                  desc={item?.description}
+                  id={item?._id}
+                />
               ))}
             </div>
           ) : (
@@ -70,6 +90,7 @@ function AllPolls() {
                   alignItems: 'center',
                   justifyContent: 'center',
                   marginTop: '4rem',
+                  height: '100%',
                 }}
               >
                 No Polls Found

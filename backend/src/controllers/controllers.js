@@ -16,6 +16,7 @@ const pusher = new Pusher({
 export const createPoll = async (req, res) => {
   const poll = {
     title: req.body.title,
+    description: req?.body?.description || 'No Description Provided',
     choices: req.body.choices.map((choice) => ({
       name: choice,
       count: 0,
