@@ -24,6 +24,7 @@ const url = 'http://localhost:3000';
 
 function Create_Poll() {
   const [title, setTitle] = useState('');
+  const [description, setDesc] = useState('');
   const [choices, setChoices] = useState(['']);
   const [error, seterrror] = useState(false);
   const [success, setsuccess] = useState({});
@@ -56,6 +57,7 @@ function Create_Poll() {
     setloading(true);
     const newpoll = {
       title,
+      description,
       choices,
     };
     try {
@@ -165,6 +167,16 @@ function Create_Poll() {
                   name="title"
                   id="title"
                   type="text"
+                  className="w-full py-2 border border-gray-400 rounded px-4"
+                />
+                <label htmlFor="desc" className="text-sm mb-2 inline-block">
+                  Enter description of the poll.
+                </label>
+                <textarea
+                  name="desc"
+                  value={description}
+                  onChange={(e) => setDesc(e.target.value)}
+                  rows={10}
                   className="w-full py-2 border border-gray-400 rounded px-4"
                 />
               </div>
