@@ -1,0 +1,8 @@
+{
+  "appId": "com.example.app",
+  "appName": "vote-it-android",
+  "webDir": "build",
+  "server": {
+    "androidScheme": "https"
+  }
+}
