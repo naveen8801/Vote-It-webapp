@@ -1,7 +1,7 @@
-import React from 'react';
-import svg from './../assets/undraw_engineering_team.svg';
-import githubIcon from './../assets/github.svg';
-import styles from './style.module.css';
+import React from "react";
+import svg from "./../assets/undraw_engineering_team.svg";
+import githubIcon from "./../assets/github.svg";
+import styles from "./style.module.css";
 
 function AboutUs() {
   return (
@@ -14,15 +14,15 @@ function AboutUs() {
             trying to make things easier and effective for rest of the world.
             Feel free to contribute to this project 🚀
           </p>
-          <div style={{ marginTop: '2rem', fontSize: '18px' }}>
+          <div style={{ marginTop: "2rem", fontSize: "18px" }}>
             <p
               onClick={(e) =>
                 window.open(
-                  'https://github.com/naveen8801/VoteMe-webapp',
-                  '_blank'
+                  "https://github.com/naveen8801/VoteMe-webapp",
+                  "_blank"
                 )
               }
-              style={{ color: 'blue' }}
+              style={{ color: "blue" }}
             >
               Github
             </p>
@@ -30,8 +30,8 @@ function AboutUs() {
         </div>
       </div>
       <div className={styles.rightDiv}>
-        <div style={{ width: '80%' }}>
-          <img src={svg} style={{ width: '100%', height: '100%' }} />
+        <div className={styles.imgwrapper}>
+          <img src={svg} style={{ width: "100%", height: "100%" }} />
         </div>
       </div>
     </div>

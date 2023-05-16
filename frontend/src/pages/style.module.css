@@ -35,3 +35,30 @@
 .p_ {
   font-size: 19px;
 }
+
+.imgwrapper {
+      width: 80%;
+}
+
+@media screen and (max-width: 700px) {
+.main_container {
+    flex-direction: column;
+    height: 100%;
+    padding-bottom: 4rem;
+  }
+
+  .leftDiv {
+    width: 100%;
+  }
+
+  .rightDiv {
+    width: 100%;
+  }
+
+  .imgwrapper{
+    margin-top: 2rem;
+    width: 50%;
+  }
+
+
+}

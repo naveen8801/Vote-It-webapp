@@ -1,8 +1,8 @@
-import React from 'react';
-import styles from './style.module.css';
-import { Link } from 'react-router-dom';
-import svg1 from './../assets/home.svg';
-import ReactTypingEffect from 'react-typing-effect';
+import React from "react";
+import styles from "./style.module.css";
+import { Link } from "react-router-dom";
+import svg1 from "./../assets/home.svg";
+import ReactTypingEffect from "react-typing-effect";
 
 function Home() {
   return (
@@ -11,20 +11,20 @@ function Home() {
         <div className={styles.container}>
           <div>
             <h2 className={styles.main_heading}>
-              Welcome To{' '}
-              <span style={{ fontSize: '60px' }}>
+              Welcome To{" "}
+              <span style={{ fontSize: "60px" }}>
                 <ReactTypingEffect
                   typingDelay="100"
                   cursor="_"
                   speed="300"
                   eraseSpeed="250"
                   eraseDelay="3000"
-                  text={['Vote:It']}
+                  text={["Vote:It"]}
                   cursorRenderer={(cursor) => <h1>{cursor}</h1>}
                   displayTextRenderer={(text, i) => {
                     return (
                       <h1>
-                        {text.split(':')[0]} <span>{text.split(':')[1]}</span>
+                        {text.split(":")[0]} <span>{text.split(":")[1]}</span>
                       </h1>
                     );
                   }}
@@ -44,13 +44,13 @@ function Home() {
         <div className="container mx-auto px-5 my-6">
           <Link
             to="/create"
-            className="text-white cursor-pointer hover:text-gray-400 transition duration-150 mr-10"
+            className="text-white cursor-pointer hover:text-gray-400 transition duration-150 mr-10 mt-5"
           >
-            <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+            <button class="mt-5 bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
               Create Poll
             </button>
           </Link>
-           <Link
+          <Link
             to="/all-polls"
             className="text-white cursor-pointer hover:text-gray-400 transition duration-150 mr-10"
           >
@@ -61,8 +61,8 @@ function Home() {
         </div>
       </div>
       <div className={styles.rightDiv}>
-        <div style={{ width: '80%' }}>
-          <img src={svg1} style={{ width: '100%', height: '100%' }} />
+        <div className={styles.imgwrapper}>
+          <img src={svg1} style={{ width: "100%", height: "100%" }} />
         </div>
       </div>
     </div>
