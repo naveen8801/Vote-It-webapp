@@ -1,18 +1,20 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import reportWebVitals from './reportWebVitals';
-import { BrowserRouter, Link, Switch, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import Create_Poll from './pages/Create_Poll';
-import Getpoll from './pages/Getpoll';
-import AboutUs from './pages/AboutUs';
-import AllPolls from './pages/AllPolls';
+import React from "react";
+import ReactDOM from "react-dom";
+import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter, Link, Switch, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Create_Poll from "./pages/Create_Poll";
+import Getpoll from "./pages/Getpoll";
+import AboutUs from "./pages/AboutUs";
+import AllPolls from "./pages/AllPolls";
+import NavBar from "./components/NavBar.js/NavBar";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <div className="w-full h-screen">
-        <div className="h-16 w-full bg-gray-800 flex items-center">
+        <NavBar />
+        {/* <div className="h-16 w-full bg-gray-800 flex items-center">
           <div className="container mx-auto px-5">
             <Link
               to="/"
@@ -39,7 +41,7 @@ ReactDOM.render(
               Create Poll
             </Link>
           </div>
-        </div>
+        </div> */}
 
         <Switch>
           <Route path="/create">
@@ -62,7 +64,7 @@ ReactDOM.render(
       </div>
     </BrowserRouter>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
