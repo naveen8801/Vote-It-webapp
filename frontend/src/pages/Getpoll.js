@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { CastVote, GetPoll } from '../api';
-import Barchart from '../components/Barchart/Barchart';
+import React, { useState, useEffect } from "react";
+import { CastVote, GetPoll } from "../api";
+import Barchart from "../components/Barchart/Barchart";
 
-import CircularProgress from '@material-ui/core/CircularProgress';
+import CircularProgress from "@material-ui/core/CircularProgress";
 
-import Pusher from 'pusher-js';
+import Pusher from "pusher-js";
 
 function Getpoll(props) {
   const pollID = props.props.match.params.poll;
@@ -40,13 +40,13 @@ function Getpoll(props) {
               label: chart_name,
               data: data,
               backgroundColor: [
-                '#845ec2',
-                '#ffc75f',
-                '#ff5e78',
-                '#6ffc03',
-                '#f70240',
-                '#e6acbb',
-                '#ecfc0a',
+                "#845ec2",
+                "#ffc75f",
+                "#ff5e78",
+                "#6ffc03",
+                "#f70240",
+                "#e6acbb",
+                "#ecfc0a",
               ],
             },
           ],
@@ -62,12 +62,12 @@ function Getpoll(props) {
   const pusherData = () => {
     Pusher.logToConsole = true;
 
-    var pusher = new Pusher('cc27400a96c16f796300', {
-      cluster: 'us3',
+    var pusher = new Pusher("cc27400a96c16f796300", {
+      cluster: "us3",
     });
 
-    var channel = pusher.subscribe('polling');
-    channel.bind('poll_created', function (data) {
+    var channel = pusher.subscribe("polling");
+    channel.bind("poll_created", function (data) {
       const temp = data;
 
       const choices = temp.choices;
@@ -86,13 +86,13 @@ function Getpoll(props) {
             label: chart_name,
             data: data,
             backgroundColor: [
-              '#845ec2',
-              '#ffc75f',
-              '#ff5e78',
-              '#6ffc03',
-              '#f70240',
-              '#e6acbb',
-              '#ecfc0a',
+              "#845ec2",
+              "#ffc75f",
+              "#ff5e78",
+              "#6ffc03",
+              "#f70240",
+              "#e6acbb",
+              "#ecfc0a",
             ],
           },
         ],
@@ -141,11 +141,11 @@ function Getpoll(props) {
       {!maindata ? (
         <div
           style={{
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginTop: '4rem',
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+            marginTop: "4rem",
           }}
         >
           <CircularProgress />
@@ -188,12 +188,12 @@ function Getpoll(props) {
       )}
       <div
         style={{
-          width: '100%',
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'center',
-          marginTop: '4rem',
+          width: "100%",
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+          marginTop: "4rem",
         }}
       >
         {loading ? <CircularProgress /> : <Barchart chartData={chartData} />}

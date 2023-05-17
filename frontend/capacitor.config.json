@@ -3,6 +3,9 @@
   "appName": "vote-it-android",
   "webDir": "build",
   "server": {
-    "androidScheme": "https"
+    "androidScheme": "https",
+    "allowNavigation": [
+      "http://localhost:8000/*"
+    ]
   }
 }
