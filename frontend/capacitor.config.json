@@ -2,10 +2,11 @@
   "appId": "com.example.app",
   "appName": "vote-it-android",
   "webDir": "build",
+  "allowMixedContent": true,
   "server": {
     "androidScheme": "https",
     "allowNavigation": [
-      "http://localhost:8000/*"
+      "http://localhost:8000/*","https://vote-me.onrender.com"
     ]
   }
 }

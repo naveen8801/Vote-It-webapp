@@ -1,8 +1,8 @@
 import axios from "axios";
 
-// export const url = 'https://voteme-webapp.herokuapp.com';
+export const url = "https://vote-me.onrender.com";
 
-export const url = "http://localhost:8000";
+// export const url = "http://localhost:8000";
 
 export const NewPoll = (newPoll) => axios.post(`${url}/poll`, newPoll);
 export const GetPoll = (id) => axios.get(`${url}/getpoll/${id}`);
