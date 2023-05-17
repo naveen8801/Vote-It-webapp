@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { NewPoll } from '../api';
-import { Link } from 'react-router-dom';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import FileCopyIcon from '@material-ui/icons/FileCopy';
+import React, { useState } from "react";
+import { NewPoll } from "../api";
+import { Link } from "react-router-dom";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import FileCopyIcon from "@material-ui/icons/FileCopy";
 import {
   EmailIcon,
   EmailShareButton,
@@ -14,23 +14,23 @@ import {
   WhatsappIcon,
   WhatsappShareButton,
   LinkedinIcon,
-} from 'react-share';
+} from "react-share";
 
-import { ShareButtons, ShareCounts, generateShareIcon } from 'react-share';
+import { ShareButtons, ShareCounts, generateShareIcon } from "react-share";
 
 // const url = 'https://vote-me.netlify.app';
 
-const url = 'http://localhost:3000';
+const url = "http://localhost:3000";
 
 function Create_Poll() {
-  const [title, setTitle] = useState('');
-  const [description, setDesc] = useState('');
-  const [choices, setChoices] = useState(['']);
+  const [title, setTitle] = useState("");
+  const [description, setDesc] = useState("");
+  const [choices, setChoices] = useState([""]);
   const [error, seterrror] = useState(false);
   const [success, setsuccess] = useState({});
   const [loading, setloading] = useState(false);
   const addAnswer = () => {
-    setChoices([...choices, '']);
+    setChoices([...choices, ""]);
   };
 
   const removeChoice = (index) => {
@@ -62,8 +62,8 @@ function Create_Poll() {
     };
     try {
       const newpoll_created = await NewPoll(newpoll);
-      setTitle('');
-      setChoices(['']);
+      setTitle("");
+      setChoices([""]);
       await setsuccess(newpoll_created.data);
       seterrror(false);
     } catch (error) {
@@ -82,15 +82,15 @@ function Create_Poll() {
       {loading ? (
         <div
           style={{
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginTop: '4rem',
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+            marginTop: "4rem",
           }}
         >
           <CircularProgress
-            style={{ textAlign: 'center', display: 'inline-block' }}
+            style={{ textAlign: "center", display: "inline-block" }}
           />
         </div>
       ) : (
@@ -98,7 +98,7 @@ function Create_Poll() {
           {error ? (
             <header
               className="px-8 py-5 text-gray-800"
-              style={{ backgroundColor: '#f05454', color: 'white' }}
+              style={{ backgroundColor: "#f05454", color: "white" }}
             >
               *All fields are required and minimum two choices are required
             </header>
@@ -109,44 +109,47 @@ function Create_Poll() {
 
           {success._id ? (
             <div className="py-9 px-8">
-              <div className="w-full mb-2 bg-green-100 text-green-500 border border-green-500 rounded py-3 px-2">
+              <div
+                style={{ wordWrap: "break-word" }}
+                className="w-full mb-2 bg-green-100 text-green-500 border border-green-500 rounded py-3 px-2"
+              >
                 <strong>Poll created successfully - </strong>
                 <Link to={`/polls/${success._id}`}>
                   {url}/polls/{success._id}
                 </Link>
-                <div style={{ display: 'inline-block', float: 'right' }}>
+                <div style={{ display: "inline-block", float: "right" }}>
                   <FileCopyIcon onClick={copyToClipboar} />
                 </div>
               </div>
               <div
                 style={{
-                  width: '100%',
-                  height: '20px',
-                  display: 'flex',
-                  flexDirection: 'row',
-                  justifyContent: 'center',
+                  width: "100%",
+                  height: "20px",
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "center",
                 }}
               >
                 <EmailShareButton
-                  style={{ marginLeft: '1rem', marginRight: '1rem' }}
+                  style={{ marginLeft: "1rem", marginRight: "1rem" }}
                   url={`${url}/polls/${success._id}`}
                 >
                   <EmailIcon size={45} round />
                 </EmailShareButton>
                 <WhatsappShareButton
-                  style={{ marginLeft: '1rem', marginRight: '1rem' }}
+                  style={{ marginLeft: "1rem", marginRight: "1rem" }}
                   url={`${url}/polls/${success._id}`}
                 >
                   <WhatsappIcon size={45} round />
                 </WhatsappShareButton>
                 <TwitterShareButton
-                  style={{ marginLeft: '1rem', marginRight: '1rem' }}
+                  style={{ marginLeft: "1rem", marginRight: "1rem" }}
                   url={`${url}/polls/${success._id}`}
                 >
-                  <TwitterIcon size={45} round />{' '}
+                  <TwitterIcon size={45} round />{" "}
                 </TwitterShareButton>
                 <RedditShareButton
-                  style={{ marginLeft: '1rem', marginRight: '1rem' }}
+                  style={{ marginLeft: "1rem", marginRight: "1rem" }}
                   url={`${url}/polls/${success._id}`}
                 >
                   <RedditIcon size={45} round />
