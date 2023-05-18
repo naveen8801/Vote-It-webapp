@@ -7,7 +7,7 @@ import Create_Poll from "./pages/Create_Poll";
 import Getpoll from "./pages/Getpoll";
 import AboutUs from "./pages/AboutUs";
 import AllPolls from "./pages/AllPolls";
-import NavBar from "./components/NavBar.js/NavBar";
+import NavBar from "./components/NavBar/NavBar";
 
 ReactDOM.render(
   <React.StrictMode>

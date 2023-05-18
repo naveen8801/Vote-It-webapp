@@ -1,6 +1,6 @@
 {
   "appId": "com.example.app",
-  "appName": "vote-it-android",
+  "appName": "Vote It",
   "webDir": "build",
   "allowMixedContent": true,
   "server": {
