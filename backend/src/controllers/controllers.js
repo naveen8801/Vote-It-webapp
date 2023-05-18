@@ -1,8 +1,8 @@
-import mongoose from 'mongoose';
-import { validateAll } from 'indicative/validator.js';
-import pollsDoc from '../models/polls.js';
-import Pusher from 'pusher';
-import dotenv from 'dotenv';
+import mongoose from "mongoose";
+import { validateAll } from "indicative/validator.js";
+import pollsDoc from "../models/polls.js";
+import Pusher from "pusher";
+import dotenv from "dotenv";
 
 dotenv.config();
 
@@ -16,7 +16,7 @@ const pusher = new Pusher({
 export const createPoll = async (req, res) => {
   const poll = {
     title: req.body.title,
-    description: req?.body?.description || 'No Description Provided',
+    description: req?.body?.description || "No Description Provided",
     choices: req.body.choices.map((choice) => ({
       name: choice,
       count: 0,
@@ -24,9 +24,9 @@ export const createPoll = async (req, res) => {
   };
   try {
     await validateAll(req.body, {
-      title: 'required',
-      choices: 'required|array|min:2',
-      'choices.*': 'required|string',
+      title: "required",
+      choices: "required|array|min:2",
+      "choices.*": "required|string",
     });
 
     try {
@@ -34,11 +34,11 @@ export const createPoll = async (req, res) => {
       await NewPoll.save();
       res.status(201).json(NewPoll);
     } catch (error) {
-      console.log('DATABASE ERROR ---  ', error);
+      console.log("DATABASE ERROR ---  ", error);
       res.status(404).json({ message: error.message });
     }
   } catch (error) {
-    console.log('VALIDATION ERROR ----  ', error);
+    console.log("VALIDATION ERROR ----  ", error);
     return res.status(422).json(error);
   }
 };
@@ -51,19 +51,19 @@ export const voteHere = async (req, res) => {
     !mongoose.Types.ObjectId.isValid(pollid) ||
     !mongoose.Types.ObjectId.isValid(optionid)
   ) {
-    res.status(404).json('No such poll or choice');
+    res.status(404).json("No such poll or choice");
   } else {
     try {
       pollsDoc.findByIdAndUpdate(pollid, updatedPoll, function (err, docs) {
         if (err) {
           console.log(err);
         } else {
-          console.log('Updated Poll : ', docs);
-          pusher.trigger('polling', 'poll_created', updatedPoll);
+          console.log("Updated Poll : ", docs);
+          pusher.trigger("polling", "poll_created", updatedPoll);
         }
       });
       // pusher.trigger('polling', 'poll_created', updatedPoll);
-      res.status(200).json('OK');
+      res.status(200).json("OK");
     } catch (error) {
       console.log(error);
     }
@@ -82,7 +82,8 @@ export const getPoll = async (req, res) => {
 
 export const getPolls = async (req, res) => {
   try {
-    const poll = await pollsDoc.find();
+    const poll = await pollsDoc.find().sort({ createdAt: 1 });
+    poll.reverse();
     res.json(poll);
   } catch (error) {
     console.log(error);

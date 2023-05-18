@@ -15,7 +15,7 @@ app.use(cors());
 app.use(morgan('dev'));
 app.use(routers);
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 1000;
 const HOST = '0.0.0.0';
 
 mongoose
