@@ -20,7 +20,7 @@ import { ShareButtons, ShareCounts, generateShareIcon } from "react-share";
 
 // const url = 'https://vote-me.netlify.app';
 
-const url = "http://localhost:3000";
+const url = "https://vote-it-now.netlify.app";
 
 function Create_Poll() {
   const [title, setTitle] = useState("");
