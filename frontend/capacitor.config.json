@@ -1,5 +1,5 @@
 {
-  "appId": "com.example.app",
+  "appId": "com.voteit.app",
   "appName": "vote It",
   "webDir": "build",
   "allowMixedContent": true,
