@@ -5,7 +5,12 @@ function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div>
-      <nav className="flex items-center justify-end flex-wrap p-6">
+      <nav className="flex items-center justify-between flex-wrap p-6">
+        <div className="flex items-center flex-shrink-0 text-white mr-6">
+          <h2 className="text-blue-500 font-bold text-lg">
+            <strong>Vote It</strong>
+          </h2>
+        </div>
         <div className="block lg:hidden">
           <button
             onClick={() => setIsOpen(!isOpen)}
