@@ -1,11 +1,32 @@
 import React, { useState } from "react";
-import { BrowserRouter, Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 function NavBar() {
+  const history = useHistory();
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div>
-      <nav className="flex items-center justify-between flex-wrap p-6">
+      <nav className="flex items-center justify-between a flex-wrap p-6">
+        <div className="block lg:hidden">
+          <button
+            onClick={() => history.go(-1)}
+            className="flex items-center px-3 py-1 rounded text-black-500 hover:text-black-400"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="36"
+              height="36"
+              fill="currentColor"
+              class="bi bi-arrow-left"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
+              />
+            </svg>
+          </button>
+        </div>
         <div className="flex items-center flex-shrink-0 text-white mr-6">
           <h2 className="text-blue-500 font-bold text-lg">
             <strong>Vote It</strong>
