@@ -62,24 +62,36 @@ function NavBar() {
             <Link
               to="/"
               className="block mt-4 mr-8 lg:inline-block lg:mt-0 text-white-400 mr-4 text-base"
+              onClick={(e) => {
+                setIsOpen(false);
+              }}
             >
               Home
             </Link>
             <Link
               to="/about"
               className="block mt-4 mr-8 lg:inline-block lg:mt-0 text-white-400 mr-4 text-base"
+              onClick={(e) => {
+                setIsOpen(false);
+              }}
             >
               About Us
             </Link>
             <Link
               to="/all-polls"
               className="block mt-4 mr-8 lg:inline-block lg:mt-0 text-white-400 mr-4 text-base"
+              onClick={(e) => {
+                setIsOpen(false);
+              }}
             >
               All Polls
             </Link>
             <Link
               to="/create"
               className="block mt-4 mr-8 lg:inline-block lg:mt-0 text-white-400 mr-4 text-base"
+              onClick={(e) => {
+                setIsOpen(false);
+              }}
             >
               Create Poll
             </Link>
